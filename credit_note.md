@@ -10,7 +10,7 @@ APRA's AT1 phase-out means no major bank hybrids will remain after 2032, yet the
 
 ## Evidence
 
-![Bank hybrid curve](outputs/curve.png)
+![Bank hybrid curve](curve.png)
 
 | Hybrid | Years to call | Margin (bp) | No-franking margin (bp) | Residual (bp) | Signal |
 |---|---|---|---|---|---|
@@ -27,6 +27,6 @@ WBCPK sits on the curve, so the switch moves from a rich line to a fairly priced
 * Liquidity: check traded value before sizing a position.
 * Small sample: 16 securities.
 
-Code and data: https://github.com/pataylward/bank-hybrid-screen
+Code and data: https://github.com/pataylward/Patrick-Aylward-bank-hybrid-screen
 
 *Student research exercise. Not financial advice.*
