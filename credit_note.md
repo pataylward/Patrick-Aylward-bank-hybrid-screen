@@ -1,6 +1,6 @@
 # Bank hybrids only pay if you can use the franking
 
-**Patrick Aylward | 01/10/2026 | Australian major bank hybrids (AT1)**
+**Patrick Aylward | 24/09/2026 | Australian major bank hybrids (AT1)**
 
 **View.** WBCPL screens about 14bp rich to the major bank hybrid curve. Switching into WBCPK, from the same issuer with a first call one year later, picks up about 20bp of margin. More broadly, for any investor who cannot use franking credits, all 16 major bank hybrids trade below BBSW, at margins of -28bp to -77bp.
 
