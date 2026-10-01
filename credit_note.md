@@ -29,4 +29,4 @@ WBCPK sits on the curve, so the switch moves from a rich line to a fairly priced
 
 Code and data: https://github.com/pataylward/Patrick-Aylward-bank-hybrid-screen
 
-*Student research exercise. Not financial advice.*
+
