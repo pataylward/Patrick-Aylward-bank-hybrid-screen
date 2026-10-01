@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bank hybrids only pay if you can use the franking | Patrick Aylward</title>
+<style>
+  :root { --blue: #0079C1; --ink: #000; --muted: #555; --line: #d9d9d9; --rich: #c0392b; --cheap: #1e8449; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.55; color: var(--ink); background: #fff; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 40px 22px 60px; }
+  .kicker { color: var(--blue); font-weight: bold; text-transform: uppercase; letter-spacing: 0.06em; font-size: 13px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 8px 0 10px; }
+  .byline { color: var(--muted); font-size: 14px; margin-bottom: 26px; }
+  .byline a { color: var(--muted); }
+  h2 { font-size: 18px; margin: 34px 0 8px; padding-bottom: 6px; border-bottom: 2px solid var(--blue); }
+  .view { border-left: 4px solid var(--blue); background: #f2f8fc; padding: 16px 18px; margin: 0 0 8px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px 0 6px; }
+  .stat { border: 1px solid var(--line); padding: 14px; }
+  .stat .n { font-size: 26px; font-weight: bold; }
+  .stat .l { font-size: 13px; color: var(--muted); }
+  img { width: 100%; height: auto; border: 1px solid var(--line); margin-top: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+  th, td { padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: right; }
+  th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
+  th { background: #f4f4f4; font-weight: bold; }
+  tr.hl td { background: #fffbe6; }
+  .RICH { color: var(--rich); font-weight: bold; }
+  .CHEAP { color: var(--cheap); font-weight: bold; }
+  .FAIR { color: var(--muted); }
+  .scroll { overflow-x: auto; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .small { font-size: 13px; color: var(--muted); }
+  a { color: var(--blue); }
+  footer { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+  @media (max-width: 600px) { h1 { font-size: 24px; } .stats { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Credit note | Australian major bank hybrids (AT1)</div>
+  <h1>Bank hybrids only pay if you can use the franking</h1>
+  <div class="byline">Patrick Aylward | 01/10/2026 | Prices as at 31/08/2026 | <a href="https://github.com/pataylward/Patrick-Aylward-bank-hybrid-screen">Code and data on GitHub</a></div>
+
+  <div class="view"><strong>View.</strong> WBCPL screens about 14bp rich to the major bank hybrid curve. Switching into WBCPK, from the same issuer with a first call one year later, picks up about 20bp of margin. More broadly, for any investor who cannot use franking credits, all 16 major bank hybrids trade below BBSW, at margins of -28bp to -77bp.</div>
+
+  <div class="stats">
+    <div class="stat"><div class="n">+20bp</div><div class="l">Pickup from switching WBCPL into WBCPK</div></div>
+    <div class="stat"><div class="n">4.5bp</div><div class="l">Extra margin per year to call: a flat curve</div></div>
+    <div class="stat"><div class="n">16 of 16</div><div class="l">Hybrids below BBSW without franking</div></div>
+  </div>
+
+  <h2>Why it matters now</h2>
+  <p>APRA's AT1 phase-out means no major bank hybrids will remain after 2032, yet the market is not pricing scarcity as risk: the curve rises only 4.5bp per year to call, from about 167bp over BBSW. Holders are paid almost nothing to extend. With the RBA lifting the cash rate to 4.60% on 30/09/2026, floating distributions are rising, which keeps buyers in the market and margins tight.</p>
+
+  <h2>Evidence</h2>
+  <img src="curve.png" alt="Trading margin against years to first call for 16 major bank hybrids, with fair value line">
+  <p class="small">Green = cheap (5bp or more above the line). Red = rich (5bp or more below it).</p>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Hybrid</th><th>Bank</th><th>Price ($)</th><th>Years to call</th><th>Margin (bp)</th><th>No-franking margin (bp)</th><th>Residual (bp)</th><th>Signal</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  </div>
+  <p>WBCPK sits on the curve, so the switch moves from a rich line to a fairly priced one without changing issuer.</p>
+
+  <h2>Risks</h2>
+  <ul>
+    <li><strong>Call risk:</strong> if a bank does not call at the first call date, the hybrid runs longer than assumed. CBAPI screens cheap, but it is only 7 months from call, so its margin is unreliable.</li>
+    <li><strong>Method:</strong> a simple approximation that ignores discounting, with one BBSW rate and one date. The simple formula reads above published market margins, so levels should be treated as indicative. The ranking of rich and cheap is the main signal.</li>
+    <li><strong>Liquidity:</strong> check traded value before sizing a position.</li>
+    <li><strong>Small sample:</strong> 16 securities.</li>
+  </ul>
+
+  <h2>Method</h2>
+  <p>For each hybrid: the clean price is the ASX price less the distribution accrued since the last payment. The trading margin is the issue margin less the premium above $100 spread evenly over the years to first call. The no-franking margin removes the 30% of each distribution paid as franking credits. A straight line of margin against years to call gives fair value, and the residual from that line is the rich/cheap signal. Built in Python with pandas.</p>
+  <p class="small">Sources: ASX Hybrids Monthly Report, August 2026 (terms and 31/08/2026 prices). RBA table F1 (3 month BBSW 4.55% on 31/08/2026; cash rate target). APRA, "Removing Additional Tier 1 capital from the prudential framework", 9 December 2024.</p>
+
+  <footer>Student research exercise. Not financial advice. | <a href="https://github.com/pataylward/Patrick-Aylward-bank-hybrid-screen">View the code</a></footer>
+</div>
+
+<script>
+  // Results from outputs/screen.csv (31/08/2026), sorted cheapest first
+  const rows = [
+    ["CBAPI","CBA",102.35,0.6,180.9,-45.6,11.1,"CHEAP"],
+    ["WBCPM","Westpac",107.08,5.1,199.1,-30.4,9.7,"CHEAP"],
+    ["WBCPJ","Westpac",102.45,0.6,173.6,-64.9,4.3,"FAIR"],
+    ["AN3PI","ANZ",103.37,1.6,177.6,-48.9,3.8,"FAIR"],
+    ["AN3PK","ANZ",104.57,3.6,186.4,-32.6,3.6,"FAIR"],
+    ["AN3PL","ANZ",106.02,4.6,189.6,-33.9,2.4,"FAIR"],
+    ["WBCPK","Westpac",104.76,3.1,181.8,-41.7,1.3,"FAIR"],
+    ["AN3PJ","ANZ",103.72,2.6,179.5,-38.0,1.3,"FAIR"],
+    ["NABPJ","NAB",105.35,4.0,185.2,-35.3,0.2,"FAIR"],
+    ["NABPI","NAB",105.99,3.3,181.4,-49.6,-0.2,"FAIR"],
+    ["CBAPM","CBA",106.02,3.8,183.4,-43.1,-0.4,"FAIR"],
+    ["NABPH","NAB",103.98,1.3,170.5,-71.0,-2.1,"FAIR"],
+    ["CBAPK","CBA",104.35,2.8,174.3,-44.7,-5.0,"FAIR"],
+    ["NABPK","NAB",105.55,5.5,186.4,-28.1,-5.2,"RICH"],
+    ["CBAPL","CBA",103.72,1.8,164.5,-57.5,-10.4,"RICH"],
+    ["WBCPL","Westpac",105.20,2.1,161.8,-76.7,-14.2,"RICH"]
+  ];
+  const highlight = ["WBCPL","WBCPK"];
+  document.getElementById("rows").innerHTML = rows.map(r =>
+    `<tr class="${highlight.includes(r[0]) ? "hl" : ""}"><td><strong>${r[0]}</strong></td><td>${r[1]}</td>` +
+    `<td>${r[2].toFixed(2)}</td><td>${r[3].toFixed(1)}</td><td>${r[4].toFixed(1)}</td>` +
+    `<td>${r[5].toFixed(1)}</td><td>${r[6].toFixed(1)}</td><td class="${r[7]}">${r[7]}</td></tr>`
+  ).join("");
+</script>
+</body>
+</html>
